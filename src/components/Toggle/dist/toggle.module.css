@@ -52,3 +52,9 @@
     opacity: 1;
   }
 }
+@media (max-width: 420px) {
+  .toggle {
+    right: 15px;
+    bottom: 15px;
+  }
+}

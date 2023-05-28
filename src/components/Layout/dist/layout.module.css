@@ -87,7 +87,9 @@
 @media (max-width: 420px) {
   .layout {
     width: 95%;
+    height: 75%;
     right: 10px;
     left: 10px;
+    bottom: 80px;
   }
 }
