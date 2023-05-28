@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 70px;
+  background: linear-gradient(43deg, #1890ff, #52a6f5);
+  border-radius: 10px 10px 0px 0px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  &_img {
+    position: absolute;
+    top: 16px;
+    left: 40px;
+  }
+  &_text {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 150px;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+  }
+
+  &_button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    background: transparent;
+    border: none;
+    transform: rotate(45deg);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}

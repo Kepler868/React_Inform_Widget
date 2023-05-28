@@ -1,0 +1,54 @@
+.toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border: none;
+  font-size: 40px;
+  color: white;
+  background-color: #1890ff;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.toggle_close {
+  transform: rotate(45deg);
+  animation: rotate-close 0.5s cubic-bezier(0.26, 1.26, 0.68, 1.32);
+}
+
+.toggle_open {
+  animation: rotate-open 0.5s cubic-bezier(0.26, 1.26, 0.68, 1.32);
+}
+
+@keyframes rotate-close {
+  from {
+    transform: rotate(180deg);
+    opacity: 0.5;
+  }
+  to {
+    transform: rotate(45deg);
+    opacity: 1;
+  }
+}
+@keyframes rotate-open {
+  from {
+    transform: rotate(180deg);
+    opacity: 0.5;
+  }
+  to {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
