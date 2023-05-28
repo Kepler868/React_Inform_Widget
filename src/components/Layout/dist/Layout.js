@@ -80,19 +80,18 @@ var Layout = function (_a) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (cuid && messageInput.trim() != '') {
-                        setLoaderActive(true);
-                        setMessages(function (prev) { return __spreadArrays(prev, [
-                            {
-                                text: messageInput.trim(),
-                                typeMessage: 'user',
-                                id: react_uuid_1["default"](),
-                                shouldAnimate: true
-                            },
-                        ]); });
-                        setMessageKey(react_uuid_1["default"]());
-                        setMessageInput('');
-                    }
+                    if (!(cuid && messageInput.trim() != '')) return [3 /*break*/, 6];
+                    setLoaderActive(true);
+                    setMessages(function (prev) { return __spreadArrays(prev, [
+                        {
+                            text: messageInput.trim(),
+                            typeMessage: 'user',
+                            id: react_uuid_1["default"](),
+                            shouldAnimate: true
+                        },
+                    ]); });
+                    setMessageKey(react_uuid_1["default"]());
+                    setMessageInput('');
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, 4, 5]);
@@ -123,12 +122,19 @@ var Layout = function (_a) {
                 case 4:
                     setLoaderActive(false);
                     return [7 /*endfinally*/];
-                case 5: return [2 /*return*/];
+                case 5: return [3 /*break*/, 7];
+                case 6:
+                    setMessageInput('');
+                    _a.label = 7;
+                case 7: return [2 /*return*/];
             }
         });
     }); };
     var handleChange = function (e) {
         setMessageInput(e.target.value);
+    };
+    var handleBlur = function () {
+        messageInput.trim() === '' && setMessageInput('');
     };
     var handleDeleteChat = function () { return __awaiter(void 0, void 0, Promise, function () {
         return __generator(this, function (_a) {
@@ -174,7 +180,7 @@ var Layout = function (_a) {
                     react_1["default"].createElement(MessagesList_1["default"], { messagesData: messages, setShouldAnimate: setShouldAnimate }),
                     loaderActive && react_1["default"].createElement(Loader_1["default"], null))),
             react_1["default"].createElement("div", { onKeyDown: handleKeyPress, className: layout_module_scss_1["default"].layout_sendMessage },
-                react_1["default"].createElement("textarea", { placeholder: "\u041D\u0430\u0447\u043D\u0438\u0442\u0435 \u043F\u0438\u0441\u0430\u0442\u044C...", value: messageInput.trim(), onChange: handleChange }),
+                react_1["default"].createElement("textarea", { placeholder: "\u041D\u0430\u0447\u043D\u0438\u0442\u0435 \u043F\u0438\u0441\u0430\u0442\u044C...", value: messageInput, onChange: handleChange, onBlur: handleBlur }),
                 react_1["default"].createElement(bs_1.BsFillSendFill, { onClick: handleClick, className: messageInput.trim() !== '' ? layout_module_scss_1["default"].icon__visible : layout_module_scss_1["default"].icon, color: "#1890ff", size: "26px" })),
             messages.length > 1 && (react_1["default"].createElement(framer_motion_1.motion.div, { initial: { height: 0 }, animate: { height: 'auto' }, exit: { height: 0 }, className: layout_module_scss_1["default"].deleting },
                 react_1["default"].createElement("button", { onClick: handleDeleteChat, className: layout_module_scss_1["default"].deleting_button }, "\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0438\u0441\u0442\u043E\u0440\u0438\u044E"))))));

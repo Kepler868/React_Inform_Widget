@@ -49,36 +49,42 @@ const Layout: FC<ILayoutProps> = ({
       ])
       setMessageKey(uuid())
       setMessageInput('')
-    }
-    try {
-      const response = await InfService.request({
-        cuid,
-        text: messageInput.trim(),
-      })
-      const data = response.data as IChatRequestResponse
-      setMessages((prev: IMessage[]) => [
-        ...prev,
-        {
-          text: data.result.text.value,
-          typeMessage: 'bot',
-          id: uuid(),
-          shouldAnimate: true,
-        },
-      ])
-      setMessageKey(uuid())
+      try {
+        const response = await InfService.request({
+          cuid,
+          text: messageInput.trim(),
+        })
+        const data = response.data as IChatRequestResponse
+        setMessages((prev: IMessage[]) => [
+          ...prev,
+          {
+            text: data.result.text.value,
+            typeMessage: 'bot',
+            id: uuid(),
+            shouldAnimate: true,
+          },
+        ])
+        setMessageKey(uuid())
 
-      localStorage.getItem('cuid') === data.result.cuid
-        ? undefined
-        : setCuid(data.result.cuid)
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setLoaderActive(false)
+        localStorage.getItem('cuid') === data.result.cuid
+          ? undefined
+          : setCuid(data.result.cuid)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setLoaderActive(false)
+      }
+    } else {
+      setMessageInput('')
     }
   }
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setMessageInput(e.target.value)
+  }
+
+  const handleBlur = () => {
+    messageInput.trim() === '' && setMessageInput('')
   }
 
   const handleDeleteChat = async (): Promise<void> => {
@@ -136,8 +142,9 @@ const Layout: FC<ILayoutProps> = ({
         <div onKeyDown={handleKeyPress} className={styles.layout_sendMessage}>
           <textarea
             placeholder="Начните писать..."
-            value={messageInput.trim()}
+            value={messageInput}
             onChange={handleChange}
+            onBlur={handleBlur}
           />
           <BsFillSendFill
             onClick={handleClick}
