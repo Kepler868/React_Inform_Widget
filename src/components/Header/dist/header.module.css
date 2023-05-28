@@ -29,6 +29,7 @@
   position: absolute;
   top: 10px;
   right: 10px;
+  -webkit-tap-highlight-color: transparent;
   background: transparent;
   border: none;
   transform: rotate(45deg);
