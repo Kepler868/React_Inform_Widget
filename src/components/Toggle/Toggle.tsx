@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { FC } from 'react'
 import { FaRegComment } from 'react-icons/fa'
 import styles from './toggle.module.scss'
-import cn from 'classNames'
 import { IToggleProps } from './interfaces'
 
 const Toggle: FC<IToggleProps> = ({ toggle, containerActive }): JSX.Element => {
@@ -10,7 +9,7 @@ const Toggle: FC<IToggleProps> = ({ toggle, containerActive }): JSX.Element => {
   return (
     <motion.button
       onClick={toggle}
-      className={cn(styles.toggle)}
+      className={styles.toggle}
       whileHover={{ scale: 1.2 }}
     >
       {containerActive ? (
